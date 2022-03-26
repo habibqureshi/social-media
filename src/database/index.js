@@ -1,5 +1,10 @@
 const Sequelize = require('sequelize');
-const config = require('./config')
+
+
+const configs = require('./config')
+const {local,test} = configs
+let config =  process.env.NODE_ENV && process.env.NODE_ENV === "test" ? test : local
+console.log('config ',config);
 const sequelize = new Sequelize(
 
     process.env.db_name || config.database,
